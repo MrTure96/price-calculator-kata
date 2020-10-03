@@ -4,9 +4,9 @@
     {
         public string Name { get; }
         public int UPC { get; }
-        public decimal Price { get; }
+        public Money Price { get; }
 
-        public Product(string name, int upc, decimal price)
+        public Product(string name, int upc, Money price)
         {
             Name = name;
             UPC = upc;

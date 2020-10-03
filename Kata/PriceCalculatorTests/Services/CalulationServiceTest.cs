@@ -23,7 +23,7 @@ namespace PriceCalculatorTests.Services
             (
                 PRODUCT_NAME,
                 UPC,
-                PRICE
+                new Money(PRICE)
             );
 
             // Act
@@ -32,7 +32,7 @@ namespace PriceCalculatorTests.Services
             // Assert
             Assert.Equal(PRODUCT_NAME, result.Product.Name);
             Assert.Equal(UPC, result.Product.UPC);
-            Assert.Equal(expectedPrice, result.Product.Price);
+            Assert.Equal(expectedPrice, result.Product.Price.Amount);
         }
 
         [Theory]
@@ -47,7 +47,7 @@ namespace PriceCalculatorTests.Services
             (
                 PRODUCT_NAME,
                 UPC,
-                PRICE
+                new Money(PRICE)
             );
 
             // Act
@@ -56,7 +56,7 @@ namespace PriceCalculatorTests.Services
             // Assert
             Assert.Equal(PRODUCT_NAME, result.Product.Name);
             Assert.Equal(UPC, result.Product.UPC);
-            Assert.Equal(expectedPrice, result.Product.Price);
+            Assert.Equal(expectedPrice, result.Product.Price.Amount);
             Assert.Equal(3.04m, result.DiscountAmount);
             Assert.Equal(4.05m, result.TaxAmount);
         }
