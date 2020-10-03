@@ -57,8 +57,8 @@ namespace PriceCalculatorTests.Services
             Assert.Equal(PRODUCT_NAME, result.Product.Name);
             Assert.Equal(UPC, result.Product.UPC);
             Assert.Equal(expectedPrice, result.Product.Price.Amount);
-            Assert.Equal(3.04m, result.DiscountAmount);
-            Assert.Equal(4.05m, result.TaxAmount);
+            Assert.Equal(3.04m, result.DiscountAmount.Amount);
+            Assert.Equal(4.05m, result.TaxAmount.Amount);
         }
     }
 }

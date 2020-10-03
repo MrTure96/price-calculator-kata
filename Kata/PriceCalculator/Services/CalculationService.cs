@@ -16,10 +16,10 @@ namespace PriceCalculator.Services
 
         public Receipt Calculate(Product product)
         {
-            decimal taxAmount = CalculationHelper.CalculateTaxAmount(product.Price.Amount, TaxRate);
-            decimal discountAmount = CalculationHelper.CalculateDiscountAmount(product.Price.Amount, DiscountRate);
+            Money taxAmount = CalculationHelper.CalculateTaxAmount(product.Price.Amount, TaxRate);
+            Money discountAmount = CalculationHelper.CalculateDiscountAmount(product.Price.Amount, DiscountRate);
 
-            Product finalProduct = new Product(product.Name, product.UPC, CalculatePrice(product.Price.Amount, taxAmount, discountAmount));
+            Product finalProduct = new Product(product.Name, product.UPC, CalculatePrice(product.Price, taxAmount, discountAmount));
 
             return new Receipt
             (
@@ -29,9 +29,9 @@ namespace PriceCalculator.Services
             );
         }
 
-        private Money CalculatePrice(decimal productPrice, decimal taxAmount, decimal discountAmount)
+        private Money CalculatePrice(Money productPrice, Money taxAmount, Money discountAmount)
         {
-            return new Money(productPrice + taxAmount - discountAmount);
+            return productPrice + taxAmount - discountAmount;
         }
     }
 }

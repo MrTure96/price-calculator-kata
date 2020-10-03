@@ -7,10 +7,10 @@ namespace PriceCalculator.Models
     public class Receipt
     {
         public Product Product { get; }
-        public decimal TaxAmount { get; } = 0;
-        public decimal DiscountAmount { get; } = 0;
+        public Money TaxAmount { get; }
+        public Money DiscountAmount { get; }
 
-        public Receipt(Product product, decimal taxAmount, decimal discountAmount)
+        public Receipt(Product product, Money taxAmount, Money discountAmount)
         {
             Product = product;
             TaxAmount = taxAmount;
@@ -21,12 +21,12 @@ namespace PriceCalculator.Models
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Price: " + Product.Price.ToString());
+            sb.AppendLine($"Price: {Product.Price.Currency}{Product.Price.Amount}");
 
-            sb.AppendLine("Tax amount: " + TaxAmount.ToString());
+            sb.AppendLine($"Tax amount: {TaxAmount.Currency}{TaxAmount.Amount}");
 
-            if (DiscountAmount > 0)
-                sb.AppendLine("Discount amount: " + DiscountAmount.ToString());
+            if (DiscountAmount.Amount > 0)
+                sb.AppendLine($"Discount amount: {TaxAmount.Currency}{DiscountAmount.Amount}");
 
             return sb.ToString();
         }
