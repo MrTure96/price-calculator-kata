@@ -16,5 +16,19 @@ namespace PriceCalculator.Models
             TaxAmount = taxAmount;
             DiscountAmount = discountAmount;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Price: " + Product.Price.ToString());
+
+            sb.AppendLine("Tax amount: " + TaxAmount.ToString());
+
+            if (DiscountAmount > 0)
+                sb.AppendLine("Discount amount: " + DiscountAmount.ToString());
+
+            return sb.ToString();
+        }
     }
 }
